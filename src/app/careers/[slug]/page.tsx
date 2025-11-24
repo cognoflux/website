@@ -140,6 +140,13 @@ const jobs = {
     }
 };
 
+// Generate static params for all job slugs
+export async function generateStaticParams() {
+    return Object.keys(jobs).map((slug) => ({
+        slug: slug,
+    }));
+}
+
 export default async function JobDetailsPage({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
     const job = jobs[slug as keyof typeof jobs];
